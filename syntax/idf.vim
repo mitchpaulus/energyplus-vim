@@ -2,7 +2,7 @@
 " Language:	EnergyPlus IDF
 " Maintainer:	Mitchell T Paulus
 " Last Change:	2019-09-19
-" Remark:	Included by the C++ syntax.
+" Remark:	Included by the idf syntax.
 
 if version < 600
   syntax clear
@@ -12,11 +12,17 @@ endif
 
 syntax clear
 
+syntax keyword idfKeywords Yes No Sunday Monday Tuesday Wednesday Thursday Friday Saturday FullExterior Suburbs TimeSeries
+
 syntax match idfComment /!.*$/
 syntax match idfEditorComment /!-.*$/
 
-highlight def link idfComment Comment
-highlight def link idfEditorComment String
+syntax match idfNumber /[-]\?[0-9]\+\(\.[0-9]*\)\?/
+
+highlight default link idfComment Comment
+highlight default link idfEditorComment String
+highlight default link idfNumber Number
+highlight default link idfKeywords Keyword
 
 let b:current_syntax = "idf"
 

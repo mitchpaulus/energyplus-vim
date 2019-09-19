@@ -16,3 +16,5 @@ Differences:
 
  - User comments `!` are highlighted differently than IDFEditor
    generated comments `!-`
+ - Numbers are highlighted
+ - Highlight some keywords
