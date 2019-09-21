@@ -1,7 +1,7 @@
 # EnergyPlus Vim Syntax Highlighting
 
 This plugin provides very basic syntax highlighting for EnergyPlus idf
-files.
+and idd files.
 
 I am aware that the following plugin exists:
 
@@ -14,7 +14,8 @@ add functionality as I required.
 
 Differences:
 
+ - Also includes 'idd' syntax highlighting
  - User comments `!` are highlighted differently than IDFEditor
    generated comments `!-`
+ - Highlight object names
  - Numbers are highlighted
- - Highlight some keywords
