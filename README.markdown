@@ -14,7 +14,7 @@ add functionality as I required.
 
 Differences:
 
- - Also includes 'idd' syntax highlighting
+ - Also includes `idd`, `err`, `expidf` syntax highlighting
  - User comments `!` are highlighted differently than IDFEditor
    generated comments `!-`
  - Highlight object names
