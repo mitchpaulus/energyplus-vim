@@ -17,7 +17,7 @@ syntax match errFinalLine /\*\*\*\*\*\*\*\*\*\*\*\*\*/
 
 highlight errWarning ctermfg=Yellow ctermbg=NONE guifg=Yellow guibg=bg
 highlight errSevere ctermfg=Red ctermbg=NONE guifg=Red guibg=bg
-highlight default link errFatal ctermfg=White ctermbg=Red guifg=White guibg=Red
+highlight errFatal ctermfg=White ctermbg=Red guifg=White guibg=Red
 
 highlight default link errFinalLine Type
 
