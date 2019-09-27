@@ -10,13 +10,17 @@ elseif exists("b:current_syntax")
   finish
 endif
 
+syntax clear
+
 syntax match errWarning /\*\* Warning \*\*/
-syntax match errFatal /\*\* Fatal \*\*/
+syntax match errSevere /\*\* Severe  \*\*/
+syntax match errFatal /\*\*  Fatal  \*\*/
 syntax match errFinalLine /\*\*\*\*\*\*\*\*\*\*\*\*\*/
 
-
 highlight errWarning ctermfg=Yellow
+highlight errSevere ctermfg=Red
 highlight default link errFatal Error
+
 highlight default link errFinalLine Type
 
 let b:current_syntax = "err"
