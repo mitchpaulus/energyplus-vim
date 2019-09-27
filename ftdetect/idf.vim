@@ -1,5 +1,5 @@
 augroup filetypedetect
-au BufNewFile,BufRead *.idf	setfiletype idf
+autocmd BufNewFile,BufRead *.idf,*expidf	setfiletype idf
 augroup END
 
 " vim:ft=vim
