@@ -10,16 +10,14 @@ elseif exists("b:current_syntax")
   finish
 endif
 
-syntax clear
-
 syntax match errWarning /\*\* Warning \*\*/
 syntax match errSevere /\*\* Severe  \*\*/
 syntax match errFatal /\*\*  Fatal  \*\*/
 syntax match errFinalLine /\*\*\*\*\*\*\*\*\*\*\*\*\*/
 
-highlight errWarning ctermfg=Yellow
-highlight errSevere ctermfg=Red
-highlight default link errFatal Error
+highlight errWarning ctermfg=Yellow ctermbg=NONE guifg=Yellow guibg=bg
+highlight errSevere ctermfg=Red ctermbg=NONE guifg=Red guibg=bg
+highlight default link errFatal ctermfg=White ctermbg=Red guifg=White guibg=Red
 
 highlight default link errFinalLine Type
 
