@@ -24,4 +24,4 @@ highlight default link errFinalLine Type
 let b:current_syntax = "err"
 
 " vim:ft=vim
-#
+
