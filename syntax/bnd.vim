@@ -11,7 +11,7 @@ elseif exists("b:current_syntax")
 endif
 
 syntax match bndHeaderLine /\v^Program Version,EnergyPlus.*/
-syntax region bndComment start=/\v!/
+syntax match bndComment /\v!.*$/
 
 highlight default link bndHeaderLine Type
 highlight default link bndComment Comment
