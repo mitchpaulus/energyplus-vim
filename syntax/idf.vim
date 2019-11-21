@@ -804,7 +804,7 @@ syntax keyword idfKeywords Output:PreprocessorMessage
 syntax match idfComment /!.*$/
 syntax match idfEditorComment /!-.*$/
 
-syntax match idfNumber /[-]\?[0-9]\+\(\.[0-9]*\)\?/
+syntax match idfNumber /\<[-]\?[0-9]\+\(\.[0-9]*\)\?\>/
 
 highlight default link idfComment Comment
 highlight default link idfEditorComment String
