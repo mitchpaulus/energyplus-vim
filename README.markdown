@@ -1,7 +1,6 @@
 # EnergyPlus Vim Syntax Highlighting
 
-This plugin provides very basic syntax highlighting for EnergyPlus idf
-and idd files.
+This plugin provides very basic syntax highlighting for EnergyPlus files.
 
 I am aware that the following plugin exists:
 
@@ -14,7 +13,14 @@ add functionality as I required.
 
 Differences:
 
- - Also includes `idd`, `err`, `expidf` syntax highlighting
+ - Also includes syntax highlighting for many other EnergyPlus output
+   files
+    - `bnd`
+    - `eio`
+    - `epw`
+    - `err`
+    - `idd`
+    - `mtd`
  - User comments `!` are highlighted differently than IDFEditor
    generated comments `!-`
  - Highlight object names
