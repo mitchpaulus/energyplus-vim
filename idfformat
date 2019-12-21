@@ -1,8 +1,7 @@
+#!/usr/bin/awk -E
+
 # This script helps reformat an idf file.
-BEGIN {
-    isIndent = 0
-    searchForObject = 1
-}
+BEGIN { isIndent = 0; searchForObject = 1 }
 
 {
     if ($0 ~ /^[ ]*$/) { print ""; next }
@@ -14,6 +13,7 @@ BEGIN {
 
         indexForComment = match($0, /!/)
 
+        # Don't want to search in the comments for anything.
         searchableContent = indexForComment > 0 ?
                                 substr($0, 1, indexForComment - 1) :
                                 $0
@@ -24,6 +24,7 @@ BEGIN {
         }
     }
 
+    # If we've reached a terminator line, reset to no indent and search for an object type.
     if ($0 ~ ";") { isIndent = 0; searchForObject = 1 }
 }
 
