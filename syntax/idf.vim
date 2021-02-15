@@ -12,6 +12,9 @@ endif
 
 syntax clear
 
+" The 'colon' is used often in the idf object names
+syntax iskeyword @,48-57,:,192-255
+
 syntax keyword idfKeywords Version
 syntax keyword idfKeywords SimulationControl
 syntax keyword idfKeywords Building
@@ -804,12 +807,17 @@ syntax keyword idfKeywords Output:PreprocessorMessage
 syntax match idfComment /!.*$/
 syntax match idfEditorComment /!-.*$/
 
-syntax match idfNumber /\<[-]\?[0-9]\+\(\.[0-9]*\)\?\>/
+syntax match idfNumber /^ *\zs[-]\?[0-9]\+\(\.[0-9]*\)\?\>/
+syntax match idfNumber /, *\zs[-]\?[0-9]\+\(\.[0-9]*\)\?\ze *[,;]/
+
+syntax keyword idfConstants autocalculate AUTOCALCULATE autosize AUTOSIZE
+syntax keyword idfConstants Yes yes YES No no NO
 
 highlight default link idfComment Comment
 highlight default link idfEditorComment String
 highlight default link idfNumber Number
 highlight default link idfKeywords Type
+highlight default link idfConstants Keyword
 
 let b:current_syntax = "idf"
 
