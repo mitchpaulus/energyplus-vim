@@ -5,6 +5,6 @@
 # names begin at the start of the line, while all other lines are indented.
 /^[A-Za-z:]+[ ]*,[ ]*$/ {
     gsub(/[^A-Za-z:]/, "")
-    #print "syntax keyword idfKeywords " $0
-    print $0
+    print "syntax keyword idfKeywords " $0
+    # print $0
 }

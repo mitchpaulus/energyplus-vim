@@ -17,6 +17,7 @@ syntax iskeyword @,48-57,:,192-255
 
 syntax keyword idfKeywords Version
 syntax keyword idfKeywords SimulationControl
+syntax keyword idfKeywords PerformancePrecisionTradeoffs
 syntax keyword idfKeywords Building
 syntax keyword idfKeywords ShadowCalculation
 syntax keyword idfKeywords SurfaceConvectionAlgorithm:Inside
@@ -97,6 +98,7 @@ syntax keyword idfKeywords MaterialProperty:MoisturePenetrationDepth:Settings
 syntax keyword idfKeywords MaterialProperty:PhaseChange
 syntax keyword idfKeywords MaterialProperty:PhaseChangeHysteresis
 syntax keyword idfKeywords MaterialProperty:VariableThermalConductivity
+syntax keyword idfKeywords MaterialProperty:VariableAbsorptance
 syntax keyword idfKeywords MaterialProperty:HeatAndMoistureTransfer:Settings
 syntax keyword idfKeywords MaterialProperty:HeatAndMoistureTransfer:SorptionIsotherm
 syntax keyword idfKeywords MaterialProperty:HeatAndMoistureTransfer:Suction
@@ -107,7 +109,8 @@ syntax keyword idfKeywords MaterialProperty:GlazingSpectralData
 syntax keyword idfKeywords Construction
 syntax keyword idfKeywords Construction:CfactorUndergroundWall
 syntax keyword idfKeywords Construction:FfactorGroundFloor
-syntax keyword idfKeywords Construction:InternalSource
+syntax keyword idfKeywords ConstructionProperty:InternalHeatSource
+syntax keyword idfKeywords Construction:AirBoundary
 syntax keyword idfKeywords WindowThermalModel:Params
 syntax keyword idfKeywords WindowsCalculationEngine
 syntax keyword idfKeywords Construction:ComplexFenestrationState
@@ -115,6 +118,8 @@ syntax keyword idfKeywords Construction:WindowEquivalentLayer
 syntax keyword idfKeywords Construction:WindowDataFile
 syntax keyword idfKeywords GlobalGeometryRules
 syntax keyword idfKeywords GeometryTransform
+syntax keyword idfKeywords Space
+syntax keyword idfKeywords SpaceList
 syntax keyword idfKeywords Zone
 syntax keyword idfKeywords ZoneList
 syntax keyword idfKeywords ZoneGroup
@@ -175,11 +180,13 @@ syntax keyword idfKeywords SurfaceProperty:ConvectionCoefficients:MultipleSurfac
 syntax keyword idfKeywords SurfaceProperties:VaporCoefficients
 syntax keyword idfKeywords SurfaceProperty:ExteriorNaturalVentedCavity
 syntax keyword idfKeywords SurfaceProperty:SolarIncidentInside
+syntax keyword idfKeywords SurfaceProperty:IncidentSolarMultiplier
 syntax keyword idfKeywords SurfaceProperty:LocalEnvironment
 syntax keyword idfKeywords ZoneProperty:LocalEnvironment
 syntax keyword idfKeywords SurfaceProperty:SurroundingSurfaces
+syntax keyword idfKeywords SurfaceProperty:GroundSurfaces
 syntax keyword idfKeywords ComplexFenestrationProperty:SolarAbsorbedLayers
-syntax keyword idfKeywords ZoneProperty:UserViewFactors:bySurfaceName
+syntax keyword idfKeywords ZoneProperty:UserViewFactors:BySurfaceName
 syntax keyword idfKeywords GroundHeatTransfer:Control
 syntax keyword idfKeywords GroundHeatTransfer:Slab:Materials
 syntax keyword idfKeywords GroundHeatTransfer:Slab:MatlProps
@@ -218,6 +225,7 @@ syntax keyword idfKeywords RoomAirSettings:CrossVentilation
 syntax keyword idfKeywords RoomAirSettings:UnderFloorAirDistributionInterior
 syntax keyword idfKeywords RoomAirSettings:UnderFloorAirDistributionExterior
 syntax keyword idfKeywords RoomAir:Node:AirflowNetwork
+syntax keyword idfKeywords RoomAir:Node:AirflowNetwork:AdjacentSurfaceList
 syntax keyword idfKeywords RoomAir:Node:AirflowNetwork:InternalGains
 syntax keyword idfKeywords RoomAir:Node:AirflowNetwork:HVACEquipment
 syntax keyword idfKeywords RoomAirSettings:AirflowNetwork
@@ -259,6 +267,7 @@ syntax keyword idfKeywords ZoneMixing
 syntax keyword idfKeywords ZoneCrossMixing
 syntax keyword idfKeywords ZoneRefrigerationDoorMixing
 syntax keyword idfKeywords ZoneEarthtube
+syntax keyword idfKeywords ZoneEarthtube:Parameters
 syntax keyword idfKeywords ZoneCoolTower:Shower
 syntax keyword idfKeywords ZoneThermalChimney
 syntax keyword idfKeywords AirflowNetwork:SimulationControl
@@ -267,6 +276,7 @@ syntax keyword idfKeywords AirflowNetwork:MultiZone:Surface
 syntax keyword idfKeywords AirflowNetwork:MultiZone:ReferenceCrackConditions
 syntax keyword idfKeywords AirflowNetwork:MultiZone:Surface:Crack
 syntax keyword idfKeywords AirflowNetwork:MultiZone:Surface:EffectiveLeakageArea
+syntax keyword idfKeywords AirflowNetwork:MultiZone:SpecifiedFlowRate
 syntax keyword idfKeywords AirflowNetwork:MultiZone:Component:DetailedOpening
 syntax keyword idfKeywords AirflowNetwork:MultiZone:Component:SimpleOpening
 syntax keyword idfKeywords AirflowNetwork:MultiZone:Component:HorizontalOpening
@@ -288,6 +298,7 @@ syntax keyword idfKeywords AirflowNetwork:Distribution:Component:OutdoorAirFlow
 syntax keyword idfKeywords AirflowNetwork:Distribution:Component:ReliefAirFlow
 syntax keyword idfKeywords AirflowNetwork:Distribution:Linkage
 syntax keyword idfKeywords AirflowNetwork:Distribution:DuctViewFactors
+syntax keyword idfKeywords AirflowNetwork:Distribution:DuctSizing
 syntax keyword idfKeywords AirflowNetwork:OccupantVentilationControl
 syntax keyword idfKeywords AirflowNetwork:IntraZone:Node
 syntax keyword idfKeywords AirflowNetwork:IntraZone:Linkage
@@ -327,6 +338,7 @@ syntax keyword idfKeywords HVACTemplate:Plant:Boiler
 syntax keyword idfKeywords HVACTemplate:Plant:Boiler:ObjectReference
 syntax keyword idfKeywords HVACTemplate:Plant:MixedWaterLoop
 syntax keyword idfKeywords DesignSpecification:OutdoorAir
+syntax keyword idfKeywords DesignSpecification:OutdoorAir:SpaceList
 syntax keyword idfKeywords DesignSpecification:ZoneAirDistribution
 syntax keyword idfKeywords Sizing:Parameters
 syntax keyword idfKeywords Sizing:Zone
@@ -366,20 +378,23 @@ syntax keyword idfKeywords ZoneHVAC:HybridUnitaryHVAC
 syntax keyword idfKeywords ZoneHVAC:OutdoorAirUnit
 syntax keyword idfKeywords ZoneHVAC:OutdoorAirUnit:EquipmentList
 syntax keyword idfKeywords ZoneHVAC:TerminalUnit:VariableRefrigerantFlow
+syntax keyword idfKeywords ZoneHVAC:Baseboard:RadiantConvective:Water:Design
 syntax keyword idfKeywords ZoneHVAC:Baseboard:RadiantConvective:Water
+syntax keyword idfKeywords ZoneHVAC:Baseboard:RadiantConvective:Steam:Design
 syntax keyword idfKeywords ZoneHVAC:Baseboard:RadiantConvective:Steam
 syntax keyword idfKeywords ZoneHVAC:Baseboard:RadiantConvective:Electric
 syntax keyword idfKeywords ZoneHVAC:CoolingPanel:RadiantConvective:Water
 syntax keyword idfKeywords ZoneHVAC:Baseboard:Convective:Water
 syntax keyword idfKeywords ZoneHVAC:Baseboard:Convective:Electric
 syntax keyword idfKeywords ZoneHVAC:LowTemperatureRadiant:VariableFlow
+syntax keyword idfKeywords ZoneHVAC:LowTemperatureRadiant:VariableFlow:Design
 syntax keyword idfKeywords ZoneHVAC:LowTemperatureRadiant:ConstantFlow
+syntax keyword idfKeywords ZoneHVAC:LowTemperatureRadiant:ConstantFlow:Design
 syntax keyword idfKeywords ZoneHVAC:LowTemperatureRadiant:Electric
 syntax keyword idfKeywords ZoneHVAC:LowTemperatureRadiant:SurfaceGroup
 syntax keyword idfKeywords ZoneHVAC:HighTemperatureRadiant
 syntax keyword idfKeywords ZoneHVAC:VentilatedSlab
 syntax keyword idfKeywords ZoneHVAC:VentilatedSlab:SlabGroup
-syntax keyword idfKeywords AirTerminal:SingleDuct:Uncontrolled
 syntax keyword idfKeywords AirTerminal:SingleDuct:ConstantVolume:Reheat
 syntax keyword idfKeywords AirTerminal:SingleDuct:ConstantVolume:NoReheat
 syntax keyword idfKeywords AirTerminal:SingleDuct:VAV:NoReheat
@@ -397,8 +412,12 @@ syntax keyword idfKeywords AirTerminal:DualDuct:ConstantVolume
 syntax keyword idfKeywords AirTerminal:DualDuct:VAV
 syntax keyword idfKeywords AirTerminal:DualDuct:VAV:OutdoorAir
 syntax keyword idfKeywords ZoneHVAC:AirDistributionUnit
+syntax keyword idfKeywords ZoneHVAC:ExhaustControl
 syntax keyword idfKeywords ZoneHVAC:EquipmentList
 syntax keyword idfKeywords ZoneHVAC:EquipmentConnections
+syntax keyword idfKeywords SpaceHVAC:EquipmentConnections
+syntax keyword idfKeywords SpaceHVAC:ZoneEquipmentSplitter
+syntax keyword idfKeywords SpaceHVAC:ZoneEquipmentMixer
 syntax keyword idfKeywords Fan:SystemModel
 syntax keyword idfKeywords Fan:ConstantVolume
 syntax keyword idfKeywords Fan:VariableVolume
@@ -408,6 +427,11 @@ syntax keyword idfKeywords FanPerformance:NightVentilation
 syntax keyword idfKeywords Fan:ComponentModel
 syntax keyword idfKeywords Coil:Cooling:Water
 syntax keyword idfKeywords Coil:Cooling:Water:DetailedGeometry
+syntax keyword idfKeywords CoilSystem:Cooling:Water
+syntax keyword idfKeywords Coil:Cooling:DX
+syntax keyword idfKeywords Coil:Cooling:DX:CurveFit:Performance
+syntax keyword idfKeywords Coil:Cooling:DX:CurveFit:OperatingMode
+syntax keyword idfKeywords Coil:Cooling:DX:CurveFit:Speed
 syntax keyword idfKeywords Coil:Cooling:DX:SingleSpeed
 syntax keyword idfKeywords Coil:Cooling:DX:TwoSpeed
 syntax keyword idfKeywords Coil:Cooling:DX:MultiSpeed
@@ -484,6 +508,10 @@ syntax keyword idfKeywords AirLoopHVAC:SupplyPath
 syntax keyword idfKeywords AirLoopHVAC:ZoneMixer
 syntax keyword idfKeywords AirLoopHVAC:ReturnPlenum
 syntax keyword idfKeywords AirLoopHVAC:ReturnPath
+syntax keyword idfKeywords AirLoopHVAC:ExhaustSystem
+syntax keyword idfKeywords AirLoopHVAC:DedicatedOutdoorAirSystem
+syntax keyword idfKeywords AirLoopHVAC:Mixer
+syntax keyword idfKeywords AirLoopHVAC:Splitter
 syntax keyword idfKeywords Branch
 syntax keyword idfKeywords BranchList
 syntax keyword idfKeywords Connector:Splitter
@@ -512,6 +540,7 @@ syntax keyword idfKeywords SolarCollectorPerformance:FlatPlate
 syntax keyword idfKeywords SolarCollector:FlatPlate:Water
 syntax keyword idfKeywords SolarCollector:FlatPlate:PhotovoltaicThermal
 syntax keyword idfKeywords SolarCollectorPerformance:PhotovoltaicThermal:Simple
+syntax keyword idfKeywords SolarCollectorPerformance:PhotovoltaicThermal:BIPVT
 syntax keyword idfKeywords SolarCollector:IntegralCollectorStorage
 syntax keyword idfKeywords SolarCollectorPerformance:IntegralCollectorStorage
 syntax keyword idfKeywords SolarCollector:UnglazedTranspired
@@ -528,14 +557,17 @@ syntax keyword idfKeywords Chiller:EngineDriven
 syntax keyword idfKeywords Chiller:CombustionTurbine
 syntax keyword idfKeywords ChillerHeater:Absorption:DirectFired
 syntax keyword idfKeywords ChillerHeater:Absorption:DoubleEffect
-syntax keyword idfKeywords HeatPump:WaterToWater:EIR:Cooling
-syntax keyword idfKeywords HeatPump:WaterToWater:EIR:Heating
+syntax keyword idfKeywords HeatPump:PlantLoop:EIR:Cooling
+syntax keyword idfKeywords HeatPump:PlantLoop:EIR:Heating
+syntax keyword idfKeywords HeatPump:AirToWater:FuelFired:Heating
+syntax keyword idfKeywords HeatPump:AirToWater:FuelFired:Cooling
 syntax keyword idfKeywords HeatPump:WaterToWater:EquationFit:Heating
 syntax keyword idfKeywords HeatPump:WaterToWater:EquationFit:Cooling
 syntax keyword idfKeywords HeatPump:WaterToWater:ParameterEstimation:Cooling
 syntax keyword idfKeywords HeatPump:WaterToWater:ParameterEstimation:Heating
 syntax keyword idfKeywords DistrictCooling
-syntax keyword idfKeywords DistrictHeating
+syntax keyword idfKeywords DistrictHeating:Water
+syntax keyword idfKeywords DistrictHeating:Steam
 syntax keyword idfKeywords PlantComponent:TemperatureSource
 syntax keyword idfKeywords CentralHeatPumpSystem
 syntax keyword idfKeywords ChillerHeaterPerformance:Electric:EIR
@@ -584,6 +616,7 @@ syntax keyword idfKeywords PlantEquipmentOperation:ThermalEnergyStorage
 syntax keyword idfKeywords PlantEquipmentOperation:OutdoorDryBulbDifference
 syntax keyword idfKeywords PlantEquipmentOperation:OutdoorWetBulbDifference
 syntax keyword idfKeywords PlantEquipmentOperation:OutdoorDewpointDifference
+syntax keyword idfKeywords PlantEquipmentOperation:ChillerHeaterChangeover
 syntax keyword idfKeywords PlantEquipmentOperationSchemes
 syntax keyword idfKeywords CondenserEquipmentOperationSchemes
 syntax keyword idfKeywords EnergyManagementSystem:Sensor
@@ -612,6 +645,9 @@ syntax keyword idfKeywords ExternalInterface:FunctionalMockupUnitExport:To:Sched
 syntax keyword idfKeywords ExternalInterface:FunctionalMockupUnitExport:To:Actuator
 syntax keyword idfKeywords ExternalInterface:FunctionalMockupUnitExport:To:Variable
 syntax keyword idfKeywords ZoneHVAC:ForcedAir:UserDefined
+syntax keyword idfKeywords AirTerminal:SingleDuct:UserDefined
+syntax keyword idfKeywords Coil:UserDefined
+syntax keyword idfKeywords PlantComponent:UserDefined
 syntax keyword idfKeywords PlantEquipmentOperation:UserDefined
 syntax keyword idfKeywords AvailabilityManager:Scheduled
 syntax keyword idfKeywords AvailabilityManager:ScheduledOn
@@ -670,6 +706,7 @@ syntax keyword idfKeywords Refrigeration:CompressorList
 syntax keyword idfKeywords Refrigeration:System
 syntax keyword idfKeywords Refrigeration:TranscriticalSystem
 syntax keyword idfKeywords Refrigeration:SecondarySystem
+syntax keyword idfKeywords Refrigeration:WalkIn
 syntax keyword idfKeywords Refrigeration:AirChiller
 syntax keyword idfKeywords ZoneHVAC:RefrigerationChillerSet
 syntax keyword idfKeywords DemandManagerAssignmentList
@@ -677,6 +714,7 @@ syntax keyword idfKeywords DemandManager:ExteriorLights
 syntax keyword idfKeywords DemandManager:Lights
 syntax keyword idfKeywords DemandManager:ElectricEquipment
 syntax keyword idfKeywords DemandManager:Thermostats
+syntax keyword idfKeywords DemandManager:Ventilation
 syntax keyword idfKeywords Generator:InternalCombustionEngine
 syntax keyword idfKeywords Generator:CombustionTurbine
 syntax keyword idfKeywords Generator:MicroTurbine
@@ -693,6 +731,7 @@ syntax keyword idfKeywords Generator:FuelCell:AuxiliaryHeater
 syntax keyword idfKeywords Generator:FuelCell:ExhaustGasToWaterHeatExchanger
 syntax keyword idfKeywords Generator:FuelCell:ElectricalStorage
 syntax keyword idfKeywords Generator:FuelCell:Inverter
+syntax keyword idfKeywords Generator:FuelCell:StackCooler
 syntax keyword idfKeywords Generator:MicroCHP
 syntax keyword idfKeywords Generator:MicroCHP:NonNormalizedParameters
 syntax keyword idfKeywords Generator:FuelSupply
@@ -703,8 +742,10 @@ syntax keyword idfKeywords ElectricLoadCenter:Inverter:FunctionOfPower
 syntax keyword idfKeywords ElectricLoadCenter:Inverter:LookUpTable
 syntax keyword idfKeywords ElectricLoadCenter:Storage:Simple
 syntax keyword idfKeywords ElectricLoadCenter:Storage:Battery
+syntax keyword idfKeywords ElectricLoadCenter:Storage:LiIonNMCBattery
 syntax keyword idfKeywords ElectricLoadCenter:Transformer
 syntax keyword idfKeywords ElectricLoadCenter:Distribution
+syntax keyword idfKeywords ElectricLoadCenter:Storage:Converter
 syntax keyword idfKeywords WaterUse:Equipment
 syntax keyword idfKeywords WaterUse:Connections
 syntax keyword idfKeywords WaterUse:Storage
@@ -730,6 +771,7 @@ syntax keyword idfKeywords Matrix:TwoDimension
 syntax keyword idfKeywords HybridModel:Zone
 syntax keyword idfKeywords Curve:Linear
 syntax keyword idfKeywords Curve:QuadLinear
+syntax keyword idfKeywords Curve:QuintLinear
 syntax keyword idfKeywords Curve:Quadratic
 syntax keyword idfKeywords Curve:Cubic
 syntax keyword idfKeywords Curve:Quartic
@@ -746,9 +788,9 @@ syntax keyword idfKeywords Curve:Sigmoid
 syntax keyword idfKeywords Curve:ExponentialDecay
 syntax keyword idfKeywords Curve:DoubleExponentialDecay
 syntax keyword idfKeywords Curve:ChillerPartLoadWithLift
-syntax keyword idfKeywords Table:OneIndependentVariable
-syntax keyword idfKeywords Table:TwoIndependentVariables
-syntax keyword idfKeywords Table:MultiVariableLookup
+syntax keyword idfKeywords Table:IndependentVariable
+syntax keyword idfKeywords Table:IndependentVariableList
+syntax keyword idfKeywords Table:Lookup
 syntax keyword idfKeywords FluidProperties:Name
 syntax keyword idfKeywords FluidProperties:GlycolConcentration
 syntax keyword idfKeywords FluidProperties:Temperatures
@@ -786,6 +828,7 @@ syntax keyword idfKeywords Output:Table:SummaryReports
 syntax keyword idfKeywords Output:Table:TimeBins
 syntax keyword idfKeywords Output:Table:Monthly
 syntax keyword idfKeywords Output:Table:Annual
+syntax keyword idfKeywords Output:Table:ReportPeriod
 syntax keyword idfKeywords OutputControl:Table:Style
 syntax keyword idfKeywords OutputControl:ReportingTolerances
 syntax keyword idfKeywords Output:Variable
@@ -795,6 +838,8 @@ syntax keyword idfKeywords Output:Meter:Cumulative
 syntax keyword idfKeywords Output:Meter:Cumulative:MeterFileOnly
 syntax keyword idfKeywords Meter:Custom
 syntax keyword idfKeywords Meter:CustomDecrement
+syntax keyword idfKeywords OutputControl:Files
+syntax keyword idfKeywords OutputControl:Timestamp
 syntax keyword idfKeywords Output:JSON
 syntax keyword idfKeywords Output:SQLite
 syntax keyword idfKeywords Output:EnvironmentalImpactFactors
@@ -803,6 +848,11 @@ syntax keyword idfKeywords FuelFactors
 syntax keyword idfKeywords Output:Diagnostics
 syntax keyword idfKeywords Output:DebuggingData
 syntax keyword idfKeywords Output:PreprocessorMessage
+syntax keyword idfKeywords PythonPlugin:SearchPaths
+syntax keyword idfKeywords PythonPlugin:Instance
+syntax keyword idfKeywords PythonPlugin:Variables
+syntax keyword idfKeywords PythonPlugin:TrendVariable
+syntax keyword idfKeywords PythonPlugin:OutputVariable
 
 syntax match idfComment /!.*$/
 syntax match idfEditorComment /!-.*$/
